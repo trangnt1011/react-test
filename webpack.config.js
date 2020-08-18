@@ -63,7 +63,7 @@ const commonConfigs = () => ({
       'redux'
     ],
     styles: [
-      './styles/styles.scss'
+      './stylesheet/styles.scss'
     ]
   },
   resolve: {
