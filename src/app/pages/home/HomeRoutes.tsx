@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-const Home = React.lazy(() => import('./containers/Home'));
+import Home from './Home';
 
 export default function HomeRoutes() {
-  return (
-    <Switch>
-      <Route path="/home" component={Home} />
-    </Switch>
-  );
-}
+  const element = useRoutes([
+    { path: 'home', element: <Home /> }
+  ]);
 
+  return element;
+}

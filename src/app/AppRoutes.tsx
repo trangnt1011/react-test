@@ -1,14 +1,13 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-const PagesRoutes = React.lazy(() => import('./pages/PagesRoutes'));
+import Features from './pages/Features';
 
-export default function Routes() {
-  return (
-    <div>
-      <Switch>
-        <PagesRoutes />
-      </Switch>
-    </div>
-  );
+export default function AppRoutes() {
+  const element = useRoutes([
+    { path: '', element: <Features /> },
+    // { path: 'auth', element: <Auth /> }
+  ]);
+
+  return element;
 }

@@ -1,17 +1,14 @@
 import React, { Suspense } from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes';
+// import Features from './pages/Features';
 
 ReactDOM.render(
-  <Router>
+  <BrowserRouter>
     <h1>React Typescript Boilerplate</h1>
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <AppRoutes/>
-      </Suspense>
-    </Router>
-  </Router>,
+    <AppRoutes />
+  </BrowserRouter>,
   document.getElementById('root')
 );

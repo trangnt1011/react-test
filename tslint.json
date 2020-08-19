@@ -29,6 +29,7 @@
       ]
     },
     "ordered-imports": true,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "no-console": false
   }
 }
