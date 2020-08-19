@@ -55,7 +55,7 @@ const commonConfigs = () => ({
     },
   },
   entry: {
-    main: './app/index.tsx',
+    main: './app/App.tsx',
     vendor: [
       'react',
       'react-dom',
