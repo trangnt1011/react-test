@@ -5,7 +5,7 @@ import ArticleDetail from './article-detail/ArticleDetail';
 import ArticleList from './article-list/ArticleList';
 import Articles from './Articles';
 
-export default function AppRoutes() {
+export default function ArticleRoutes() {
   const element = useRoutes([
     {
       path: 'articles',
