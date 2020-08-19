@@ -2,11 +2,11 @@ import React, { Suspense } from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import Features from './pages/Features';
+import FeatureRoutes from './pages/FeatureRoutes';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Features />
+    <FeatureRoutes />
   </BrowserRouter>,
   document.getElementById('root')
 );

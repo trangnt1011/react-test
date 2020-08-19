@@ -1,9 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import ArticleRoutes from './ArticleRoutes';
+
 const Articles = () => {
   return (
-    <Outlet />
+    <div>
+      This is Articles pages
+      <ArticleRoutes />
+    </div>
   );
 };
 
