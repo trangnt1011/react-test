@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('./Home'));
+const Home = React.lazy(() => import('./containers/Home'));
 
 const homeRoutes = [
   {

@@ -1,24 +1,17 @@
 import React from 'react';
 
-const ArticleDetail = React.lazy(() => import('./article-detail/ArticleDetail'));
-const ArticleList = React.lazy(() => import('./article-list/ArticleList'));
-const Articles = React.lazy(() => import('./Articles'));
+const ArticleDetail = React.lazy(() => import('./containers/ArticleDetail'));
+const ArticleList = React.lazy(() => import('./containers/ArticleList'));
 
 const articleRoutes = [
   {
     path: '/articles',
-    element: Articles,
-    routes: [
-      {
-        path: '/articles',
-        element: ArticleList,
-        exact: true
-      },
-      {
-        path: '/articles/:id',
-        element: ArticleDetail
-      }
-    ]
+    element: ArticleList,
+    exact: true
+  },
+  {
+    path: '/articles/:id',
+    element: ArticleDetail
   }
 ];
 
