@@ -5,7 +5,7 @@ const Home = React.lazy(() => import('./Home'));
 const homeRoutes = [
   {
     path: '/',
-    component: Home,
+    element: Home,
     exact: true
   }
 ];

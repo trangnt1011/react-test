@@ -7,16 +7,16 @@ const Articles = React.lazy(() => import('./Articles'));
 const articleRoutes = [
   {
     path: '/articles',
-    component: Articles,
+    element: Articles,
     routes: [
       {
         path: '/articles',
-        component: ArticleList,
+        element: ArticleList,
         exact: true
       },
       {
         path: '/articles/:id',
-        component: ArticleDetail
+        element: ArticleDetail
       }
     ]
   }

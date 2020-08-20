@@ -15,7 +15,7 @@ ReactDOM.render(
               exact={route.exact}
               path={route.path}
               render={props => (
-                <route.component {...props} routes={route.routes} />
+                <route.element {...props} routes={route.routes} />
               )}
             />
           ))

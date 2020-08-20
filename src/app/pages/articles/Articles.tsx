@@ -14,7 +14,7 @@ const Articles = ({ routes }) => {
                 path={route.path}
                 exact={route.exact}
               >
-                <route.component />
+                <route.element />
               </Route>
             ))
           }
