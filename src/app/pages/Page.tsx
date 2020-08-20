@@ -11,6 +11,6 @@ const Page = ({ routes }) => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Page;
