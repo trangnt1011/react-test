@@ -15,7 +15,7 @@ const articleRoutes = [
         exact: true
       },
       {
-        path: '/:id',
+        path: ':id',
         component: ArticleDetail
       }
     ]
