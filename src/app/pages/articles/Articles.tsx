@@ -11,8 +11,8 @@ const Articles = ({ routes }) => {
             routes.map((route: any, index: number) => (
               <Route
                 key={index}
-                exact={route.exact}
                 path={route.path}
+                exact={route.exact}
               >
                 <route.component />
               </Route>

@@ -10,7 +10,7 @@ const articleRoutes = [
     component: Articles,
     routes: [
       {
-        path: '/',
+        path: '',
         component: ArticleList,
         exact: true
       },

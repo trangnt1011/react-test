@@ -6,7 +6,7 @@ const ArticleList = () => {
     <div>
       This is article-list page
       <p>
-        <Link to="1">See detail</Link>
+        <Link to="articles/1">See detail</Link>
       </p>
     </div>
   );
