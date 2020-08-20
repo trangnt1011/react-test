@@ -7,10 +7,6 @@ const homeRoutes = [
     path: '/',
     component: Home,
     exact: true
-  },
-  {
-    path: '/home',
-    component: Home
   }
 ];
 

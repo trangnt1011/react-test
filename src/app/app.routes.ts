@@ -1,7 +1,7 @@
-import featureRoutes from './pages/feature.routes';
+import pageRoutes from './pages/page.routes';
 
 const appRoutes = [
-  ...featureRoutes
+  ...pageRoutes
 ];
 
 export default appRoutes;
