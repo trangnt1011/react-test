@@ -3,15 +3,15 @@ import ArticleList from './containers/ArticleList';
 
 const articleRoutes = [
   {
-    path: '/articles',
+    path: 'articles',
     children: [
       {
-        path: '/',
+        path: '',
         element: ArticleList,
         exact: true
       },
       {
-        path: '/:id',
+        path: ':id',
         element: ArticleDetail
       }
     ]
