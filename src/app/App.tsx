@@ -1,27 +1,13 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
+import RouterOutlet from '@shared/components/RouterOutlet';
 import appRoutes from './app.routes';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        {
-          appRoutes.map((route: any, index: number) => (
-            <Route
-              key={index}
-              exact={route.exact}
-              path={route.path}
-              render={props => (
-                <route.element {...props} routes={route.routes} />
-              )}
-            />
-          ))
-        }
-      </Switch>
-    </Suspense>
+    <RouterOutlet routes={appRoutes}/>
   </BrowserRouter>,
   document.getElementById('root')
 );
