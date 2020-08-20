@@ -1,7 +1,5 @@
-import React from 'react';
-
-const ArticleDetail = React.lazy(() => import('./containers/ArticleDetail'));
-const ArticleList = React.lazy(() => import('./containers/ArticleList'));
+import ArticleDetail from './containers/ArticleDetail';
+import ArticleList from './containers/ArticleList';
 
 const articleRoutes = [
   {
