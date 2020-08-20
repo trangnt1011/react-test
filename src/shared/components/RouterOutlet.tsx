@@ -7,12 +7,13 @@ const RouterOutlet = ({ routes }) => {
       {
         routes.map((route: any, index: number) => (
           <Route key={index} path={route.path}>
+            <route.element />
             {
               route?.children?.map((subRoute: any, subIndex: number) => (
                 <Route key={subIndex} path={subRoute.path}>
                   <subRoute.element />
                 </Route>
-              )) || <route.element />
+              ))
             }
           </Route>
         ))

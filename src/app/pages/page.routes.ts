@@ -2,7 +2,12 @@ import articleRoutes from './articles/article.routes';
 import homeRoutes from './home/home.routes';
 
 const pageRoutes = [
-  ...articleRoutes,
+  {
+    path: 'articles',
+    children: [
+      ...articleRoutes,
+    ]
+  },
   ...homeRoutes
 ];
 
