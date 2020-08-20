@@ -7,7 +7,7 @@ const Features = () => {
   return (
     <div>
       <Header />
-      <Outlet />
+      {/* <Outlet /> */}
       <Footer />
     </div>
   );
