@@ -11,7 +11,7 @@ export class ApiService {
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'xxx'
+        'Authorization': 'xxx' // TODO get access token from localstorage 
       }
     });
     this._setInterceptors();
@@ -46,6 +46,7 @@ export class ApiService {
   }
 
   private _setAuthHeader(request: AxiosRequestConfig): Promise<AxiosRequestConfig> | AxiosRequestConfig {
+    // TODO get access token from localstorage
     const accessToken = 'xxx';
     if (accessToken) {
       // Check `access token` condition
@@ -64,7 +65,7 @@ export class ApiService {
    */
   private _addAuthorization(
     request: AxiosRequestConfig,
-    accessToken: string = 'xxx'
+    accessToken: string = 'xxx' // TODO get access token from localstorage
   ): AxiosRequestConfig {
     request.headers['Authorization'] = accessToken;
     return request;
