@@ -12,7 +12,7 @@ const strategies = {
 function setToken(state, params) {
   return {
     ...state,
-    token: params.payload.accessToken
+    token: params.accessToken
   };
 }
 
