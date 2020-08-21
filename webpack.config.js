@@ -14,7 +14,7 @@ const PATHS = {
   base: Path.join(__dirname),
   output: Path.join(__dirname, './dist'),
   source: Path.join(__dirname, './src'),
-  fixed: '' 
+  fixed: ''
 }
 
 const setEnvVariables = () => {
@@ -75,6 +75,7 @@ const commonConfigs = () => ({
       '@assets': Path.resolve(__dirname, './src/assets/'),
       '@config': Path.resolve(__dirname, './src/config/'),
       '@shared': Path.resolve(__dirname, './src/shared/'),
+      '@core': Path.resolve(__dirname, './src/app/core'),
     }
   },
   plugins: [

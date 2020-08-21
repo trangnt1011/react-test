@@ -1,7 +1,7 @@
 {
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
-    "no-implicit-dependencies": [true, ["@app", "@assets", "@shared", "@config"]],
+    "no-implicit-dependencies": [true, ["@app", "@assets", "@shared", "@config", "@core"]],
     "no-submodule-imports": false,
     "trailing-comma": false,
     "indent": [true, "spaces", 2],
