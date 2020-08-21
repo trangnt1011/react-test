@@ -3,12 +3,18 @@ import Register from './containers/Register';
 
 const authRoutes = [
   {
-    path: 'auth/login',
-    element: Login
-  },
-  {
-    path: 'auth/register',
-    element: Register
+    path: 'auth',
+    element: Login,
+    children: [
+      {
+        path: 'login',
+        element: Login
+      },
+      {
+        path: 'register',
+        element: Register
+      }
+    ]
   }
 ];
 
