@@ -5,11 +5,11 @@ const initialState = {
 };
 
 const strategies = {
-  SET_TOKEN: reducerSetToken,
+  SET_TOKEN: setToken,
   __default__: state => state
 };
 
-function reducerSetToken(state, params) {
+function setToken(state, params) {
   return {
     ...state,
     token: params.payload.accessToken
