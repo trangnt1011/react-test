@@ -1,5 +1,6 @@
-export const createReducer = (strategies, action, initialState) => {
-  const state = initialState;
-  const transformer = strategies[action.type] ?? strategies.__default__;
-  return transformer(state, action);
-}
+export const createReducer = ((strategies, initialState) =>
+  (state = initialState, action) => {
+    const transformer = strategies[action.type] ?? strategies.__default__;
+    return transformer(state, action);
+  }
+);

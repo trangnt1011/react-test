@@ -16,6 +16,6 @@ function setToken(state, params) {
   };
 }
 
-export default function(state = initialState, { type, payload }) {
-  return createReducer(strategies, {type, payload}, state);
-}
+const authReducer = createReducer(strategies, initialState);
+
+export default authReducer;
