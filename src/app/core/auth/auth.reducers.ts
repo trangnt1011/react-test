@@ -4,12 +4,10 @@ const initialState = {
   token: null
 };
 
-const setToken = (state, payload) => {
-  return {
-    ...state,
-    token: payload.accessToken
-  };
-};
+const setToken = (state, payload) => ({
+  ...state,
+  token: payload.accessToken
+});
 
 const strategies = {
   [types.SET_TOKEN]: setToken,
