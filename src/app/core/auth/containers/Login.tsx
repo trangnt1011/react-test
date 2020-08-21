@@ -6,13 +6,13 @@ import { loginUser } from '../auth.actions';
 const Login = () => {
   const dispatch = useDispatch();
 
-  const getTodos = () => {
+  const onLogin = () => {
     dispatch(loginUser('admin', 'admin'));
   };
 
   return (
     <div>
-      <button type="button" onClick={getTodos}>Login</button>
+      <button type="button" onClick={onLogin}>Login</button>
     </div>
   );
 };
