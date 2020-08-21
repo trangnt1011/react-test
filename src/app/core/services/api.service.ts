@@ -7,7 +7,7 @@ export class ApiService {
   constructor() {
     // Init axiosInstance
     this.axiosInstance = axios.create({
-      baseURL: 'https://jsonplaceholder.typicode.com/',
+      baseURL: 'https://nuxt-todo-server.herokuapp.com/api/',
       // Common header
       headers: {
         'Content-Type': 'application/json',

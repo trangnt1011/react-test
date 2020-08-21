@@ -6,11 +6,11 @@ import * as types from '@shared/constant/types';
 
 const http = new ApiService();
 
-export function* getTodos() {
-  const res = yield http.get(['todos']).then(res => res);
-  yield put({ type: types.SET_TODOS, payload: res });
+export function* loginUserSaga({ payload }: AnyAction) {
+  const res = yield http.post(['auth/login'], payload).then(res => res);
+  yield put({ type: types.SET_CURRENT_USER, payload: res });
 }
 
 export function* watchAuth() {
-  yield takeLatest(types.GET_TODOS, getTodos);
+  yield takeLatest(types.LOGIN_USER, loginUserSaga);
 }
