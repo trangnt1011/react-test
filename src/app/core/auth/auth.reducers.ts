@@ -13,7 +13,7 @@ function reducerSetToken(state, params) {
   return {
     ...state,
     token: params.payload.accessToken
-  }
+  };
 }
 
 export default function(state = initialState, { type, payload }) {
