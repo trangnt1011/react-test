@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-export { ENDPOINT } from '@shared/constant/endpoint';
+export { ENDPOINT } from '@config/endpoint';
 
 export class ApiService {
 
