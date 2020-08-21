@@ -17,5 +17,5 @@ function setToken(state, params) {
 }
 
 export default function(state = initialState, { type, payload }) {
-  return createReducer(strategies, {type, payload}, initialState);
+  return createReducer(strategies, {type, payload}, state);
 }
