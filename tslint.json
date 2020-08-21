@@ -28,7 +28,7 @@
         "allow-pascal-case"
       ]
     },
-    "ordered-imports": true,
+    "ordered-imports": false,
     "jsx-no-lambda": false,
     "no-console": false
   }
