@@ -8,9 +8,9 @@ const http = new ApiService();
 
 export function* loginUserSaga({ payload }: AnyAction) {
   const res = yield http.post([ENDPOINT.auth.login], payload).then(res => res);
-  yield put({ type: types.SET_CURRENT_USER, payload: res });
+  yield put({ type: types.SET_TOKEN, payload: res });
 }
 
 export function* watchAuth() {
-  yield takeLatest(types.LOGIN_USER, loginUserSaga);
+  yield takeLatest(types.SIGN_IN, loginUserSaga);
 }

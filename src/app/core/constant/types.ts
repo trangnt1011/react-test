@@ -1,2 +1,2 @@
-export const LOGIN_USER = 'LOGIN_USER';
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SIGN_IN = 'SIGN_IN';
+export const SET_TOKEN = 'SET_TOKEN';
