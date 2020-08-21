@@ -1,4 +1,4 @@
-import * as types from '@app/core/constant/types';
+import * as types from '@app/core/constants/types';
 
 const initialState = {
   token: null

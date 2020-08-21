@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { put, takeLatest } from 'redux-saga/effects';
 
 import { ApiService, ENDPOINT } from '@app/core/services/api.service';
-import * as types from '@app/core/constant/types';
+import * as types from '@app/core/constants/types';
 
 const http = new ApiService();
 
