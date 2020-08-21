@@ -7,7 +7,7 @@ export class ApiService {
   constructor() {
     // Init axiosInstance
     this.axiosInstance = axios.create({
-      baseURL: 'baseUrl',
+      baseURL: 'https://jsonplaceholder.typicode.com/',
       // Common header
       headers: {
         'Content-Type': 'application/json',
