@@ -1,7 +1,7 @@
 import * as types from '@app/core/constant/types';
 
 const initialState = {
-  accessToken: null
+  token: null
 };
 
 export default function(state = initialState, { type, payload }) {
@@ -9,7 +9,7 @@ export default function(state = initialState, { type, payload }) {
     case types.SET_TOKEN:
       return {
         ...state,
-        accessToken: payload.accessToken
+        token: payload.accessToken
       };
     default:
       return state;
