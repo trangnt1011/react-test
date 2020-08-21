@@ -1,5 +1,6 @@
-import { createReducer } from '@shared/services/reducer-factory';
+import { createReducer } from '@app/core/helpers/reducer-factory';
 import * as types from '@core/constants/types';
+
 const initialState = {
   token: null
 };
