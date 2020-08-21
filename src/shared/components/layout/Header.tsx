@@ -1,9 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+export function Header() {
   return (
-    <div>This is header</div>
+    <header>
+      <ul>
+        <li>
+          <Link to="">Home</Link>
+        </li>
+        <li>
+          <Link to="articles">Articles</Link>
+        </li>
+      </ul>
+    </header>
   );
-};
-
-export default Header;
+}

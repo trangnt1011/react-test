@@ -55,7 +55,7 @@ const commonConfigs = () => ({
     },
   },
   entry: {
-    main: './app/index.tsx',
+    main: './app/App.tsx',
     vendor: [
       'react',
       'react-dom',
@@ -74,6 +74,7 @@ const commonConfigs = () => ({
       '@app': Path.resolve(__dirname, './src/app/'),
       '@assets': Path.resolve(__dirname, './src/assets/'),
       '@config': Path.resolve(__dirname, './src/config/'),
+      '@shared': Path.resolve(__dirname, './src/shared/'),
     }
   },
   plugins: [
