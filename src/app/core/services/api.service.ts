@@ -11,7 +11,7 @@ export class ApiService {
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'xxx' // TODO get access token from localstorage 
+        'Authorization': 'xxx' // TODO get access token from localstorage
       }
     });
     this._setInterceptors();
