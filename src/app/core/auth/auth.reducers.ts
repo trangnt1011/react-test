@@ -1,11 +1,11 @@
 import { createReducer } from '@shared/services/reducer-factory';
-
+import * as types from '@core/constants/types';
 const initialState = {
   token: null
 };
 
 const strategies = {
-  SET_TOKEN: setToken,
+  [types.SET_TOKEN]: setToken,
   __default__: state => state
 };
 
