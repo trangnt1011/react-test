@@ -1,4 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { environment } from '@config/environment';
+export { ENDPOINT } from '@config/endpoint';
 
 export class ApiService {
 
@@ -7,7 +9,7 @@ export class ApiService {
   constructor() {
     // Init axiosInstance
     this.axiosInstance = axios.create({
-      baseURL: 'baseUrl',
+      baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
