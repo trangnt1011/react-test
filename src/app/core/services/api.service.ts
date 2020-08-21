@@ -100,7 +100,7 @@ export class ApiService {
     return null;
   }
 
-  public createURL(uri: (string | object)[]) {
+  createURL(uri: (string | object)[]) {
     let paramsUrl;
     if (typeof uri[uri.length - 1] !== 'string') {
       paramsUrl = uri.pop();
@@ -114,35 +114,35 @@ export class ApiService {
     }
   }
 
-  public get(uri: (string | object)[], params = {}, moreConfigs = {}) {
+  get(uri: (string | object)[], params = {}, moreConfigs = {}) {
     return new Promise((resolve, reject) => {
       const request = this.axiosInstance.get(this.createURL(uri), { params, ...moreConfigs });
       this._handleRespond(request, resolve, reject);
     });
   }
 
-  public post(uri: (string | object)[], data = {}, moreConfigs = {}) {
+  post(uri: (string | object)[], data = {}, moreConfigs = {}) {
     return new Promise((resolve, reject) => {
       const request = this.axiosInstance.post(this.createURL(uri), data, moreConfigs);
       this._handleRespond(request, resolve, reject);
     });
   }
 
-  public put(uri: (string | object)[], data = {}, moreConfigs = {}) {
+  put(uri: (string | object)[], data = {}, moreConfigs = {}) {
     return new Promise((resolve, reject) => {
       const request = this.axiosInstance.put(this.createURL(uri), data, moreConfigs);
       this._handleRespond(request, resolve, reject);
     });
   }
 
-  public delete(uri: (string | object)[], moreConfigs = {}) {
+  delete(uri: (string | object)[], moreConfigs = {}) {
     return new Promise((resolve, reject) => {
       const request = this.axiosInstance.delete(this.createURL(uri), moreConfigs);
       this._handleRespond(request, resolve, reject);
     });
   }
 
-  public multipeGets(apiRequests: any) {
+  multipeGets(apiRequests: any) {
     const apiReqs = apiRequests.map((v: any) =>
     this.axiosInstance.get(v),
     );
