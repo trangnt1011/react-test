@@ -1,3 +1,5 @@
+export const BASE_URL = 'https://nuxt-todo-server.herokuapp.com/api/';
+
 const RESOURCES = {
   auth: 'auth'
 };

@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <div>
-      <button type="button" onClick={onLogin}>Login</button>
+      <button onClick={onLogin}>Login</button>
     </div>
   );
 };

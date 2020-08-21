@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { BASE_URL } from '@config/endpoint';
 export { ENDPOINT } from '@config/endpoint';
 
 export class ApiService {
@@ -8,7 +9,7 @@ export class ApiService {
   constructor() {
     // Init axiosInstance
     this.axiosInstance = axios.create({
-      baseURL: 'https://nuxt-todo-server.herokuapp.com/api/',
+      baseURL: BASE_URL,
       // Common header
       headers: {
         'Content-Type': 'application/json',
