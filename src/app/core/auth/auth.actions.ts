@@ -1,4 +1,4 @@
-import * as types from '@shared/constant/types';
+import * as types from '@app/core/constant/types';
 
 export const loginUser = (username: string, password: string) => ({
   type: types.LOGIN_USER,
