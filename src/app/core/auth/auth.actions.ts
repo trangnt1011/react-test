@@ -1,6 +1,6 @@
 import * as types from '@app/core/constants/types';
 
-export const loginUser = (username: string, password: string) => ({
+export const actionLogin = (account: object) => ({
   type: types.SIGN_IN,
-  payload: { username, password }
+  payload: account
 });

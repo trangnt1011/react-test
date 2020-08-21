@@ -1,13 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { loginUser } from '../auth.actions';
+import { actionLogin } from '../auth.actions';
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const onLogin = () => {
-    dispatch(loginUser('admin', 'admin'));
+    const account = { username: 'admin', password: 'admin' };
+    dispatch(
+      actionLogin(account)
+    );
   };
 
   return (
