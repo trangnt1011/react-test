@@ -9,10 +9,10 @@ const strategies = {
   __default__: state => state
 };
 
-function setToken(state, params) {
+function setToken(state, payload) {
   return {
     ...state,
-    token: params.accessToken
+    token: payload.accessToken
   };
 }
 
