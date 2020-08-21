@@ -4,17 +4,17 @@ const initialState = {
   token: null
 };
 
-const strategies = {
-  [types.SET_TOKEN]: setToken,
-  __default__: state => state
-};
-
-function setToken(state, payload) {
+const setToken = (state, payload) => {
   return {
     ...state,
     token: payload.accessToken
   };
-}
+};
+
+const strategies = {
+  [types.SET_TOKEN]: setToken,
+  __default__: state => state
+};
 
 const authReducer = createReducer(strategies, initialState);
 
