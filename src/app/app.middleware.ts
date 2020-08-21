@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 
-export default function* rootMiddleware() {
+export default function* appMiddleware() {
   yield all([
     // watchActions here
   ]);

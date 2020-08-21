@@ -8,16 +8,16 @@ import { logger } from 'redux-logger';
 
 import { Footer, Header } from '@shared/components/layout/index';
 import appRoutes from './app.routes';
-import rootMiddleware from './app.middleware';
-import rootReducer from './app.reducer';
+import appMiddleware from './app.middleware';
+import appReducer from './app.reducers';
 
 const middleware = createSagaMiddleware();
 const store = createStore(
-  rootReducer,
+  appReducer,
   applyMiddleware(middleware, logger)
 );
 
-middleware.run(rootMiddleware);
+middleware.run(appMiddleware);
 
 ReactDOM.render(
   <Provider store={store}>
