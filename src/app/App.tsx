@@ -26,13 +26,18 @@ ReactDOM.render(
       <Routes>
         {
           appRoutes.map((route: any, index: number) => (
-            <Route key={index} path={route.path}>
-              <route.element />
+            <Route
+              key={index}
+              path={route.path}
+              element={<route.element />}
+            >
               {
                 route?.children?.map((subRoute: any, subIndex: number) => (
-                  <Route key={subIndex} path={subRoute.path}>
-                    <subRoute.element />
-                  </Route>
+                  <Route
+                    key={subIndex}
+                    path={subRoute.path}
+                    element={<subRoute.element />}
+                  />
                 ))
               }
             </Route>
