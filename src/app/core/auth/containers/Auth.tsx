@@ -1,10 +1,11 @@
 import React from 'react';
-import RouteOutlet from '@shared/components/RouterOutlet';
+import { Outlet } from 'react-router-dom';
 
-const Auth = ({ routes }) => {
+const Auth = () => {
   return (
     <div className="auth-page">
-      <RouteOutlet routes={routes} />
+      Auth component works!
+      <Outlet />
     </div>
   );
 };

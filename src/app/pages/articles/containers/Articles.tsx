@@ -1,10 +1,10 @@
 import React from 'react';
-import RouteOutlet from '@shared/components/RouterOutlet';
+import { Outlet } from 'react-router-dom';
 
-const Articles = ({ routes }) => {
+const Articles = () => {
   return (
     <div className="articles-page">
-      <RouteOutlet routes={routes} />
+      <Outlet />
     </div>
   );
 };
