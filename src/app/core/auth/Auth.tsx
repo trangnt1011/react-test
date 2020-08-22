@@ -1,8 +1,9 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const Auth = () => {
   return (
-    <div>This is Auth page</div>
+    <Outlet />
   );
 };
 
