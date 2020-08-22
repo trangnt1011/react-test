@@ -4,7 +4,7 @@ import Home from './containers/Home';
 
 const homeRoutes = [
   {
-    path: '/',
+    path: 'home',
     element: Home,
     exact: true
   }
