@@ -1,19 +1,22 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from '@config/environment';
-export { ENDPOINT } from '@config/endpoint';
+import AuthHelper, { AuthHelperInterface } from '../helpers/authHelper';
+import jwtHelper from '../helpers/jwtHelper';
 
 export class ApiService {
 
   axiosInstance: AxiosInstance;
+  authHelper: AuthHelper<AuthHelperInterface>;
 
   constructor() {
+    this.authHelper = new AuthHelper(jwtHelper);
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'xxx' // TODO get access token from localstorage
+        ...this.authHelper.defaultHeader()
       }
     });
     this._setInterceptors();
@@ -84,7 +87,7 @@ export class ApiService {
 
   private _setInterceptors() {
     this.axiosInstance.interceptors.request.use(
-      (request: AxiosRequestConfig) => this._setAuthHeader(request),
+      (request: AxiosRequestConfig) => this.authHelper.setAuthHeader(request),
     );
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => response,
@@ -96,7 +99,7 @@ export class ApiService {
     // Detect refresh Token
     if (error.isAxiosError && error.response?.status === 401) {
       const originalRequest = error.config;
-      const req = await this._handleRefreshToken(originalRequest);
+      const req = await this.authHelper.handleRefreshToken(originalRequest);
       return this.axiosInstance(req);
     }
 
@@ -108,60 +111,5 @@ export class ApiService {
       // Default | Network errors | CORS | ...
       return Promise.reject({});
     }
-  }
-
-  private _setAuthHeader(request: AxiosRequestConfig): Promise<AxiosRequestConfig> | AxiosRequestConfig {
-    // TODO get access token from localstorage
-    const accessToken = 'xxx';
-    if (accessToken) {
-      // Check `access token` condition
-      if (!this._isAcceptedToken()) {
-        return this._handleRefreshToken(request);
-      }
-      // Normal case: Request with authorization
-      return this._addAuthorization(request, accessToken);
-    }
-    // Normal case: Request without authorization
-    return request;
-  }
-
-  /**
-   * Adding new Authorization token after Refresh token
-   */
-  private _addAuthorization(
-    request: AxiosRequestConfig,
-    accessToken: string = 'xxx' // TODO get access token from localstorage
-  ): AxiosRequestConfig {
-    request.headers['Authorization'] = accessToken;
-    return request;
-  }
-
-  /**
-   * Token conditions: custom checking access token
-   * @method _isAcceptedToken
-   * @return {boolean}
-   *         `true` : accepted token for calling API
-   *         `false`: need to refresh access_token
-   */
-  private _isAcceptedToken(): boolean {
-    /**
-     * Adding conditions here
-     */
-    // TODO
-
-    // Default return
-    return true;
-  }
-
-  /**
-   * Handle refresh token with current API request
-   * @method _handleRefreshToken
-   * @private
-   * @param   [request] - current API request that have expired access_token or get 401 Unauthorized
-   * @returns Promise<AxiosRequestConfig>
-   */
-  private _handleRefreshToken(request: AxiosRequestConfig): Promise<AxiosRequestConfig> {
-    // TODO handle refresh token
-    return null;
   }
 }
