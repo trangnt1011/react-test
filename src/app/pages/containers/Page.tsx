@@ -1,7 +1,7 @@
 import React from 'react';
 import RouteOutlet from '@shared/components/RouterOutlet';
 
-const Pages = ({ routes }) => {
+const Page = ({ routes }) => {
   return (
     <div className="pages-container">
       <RouteOutlet routes={routes} />
@@ -9,4 +9,4 @@ const Pages = ({ routes }) => {
   );
 };
 
-export default Pages;
+export default Page;
