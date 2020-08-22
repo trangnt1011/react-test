@@ -19,7 +19,6 @@ const store = createStore(
 );
 
 middleware.run(appMiddleware);
-console.log(appRoutes);
 
 ReactDOM.render(
   <Provider store={store}>

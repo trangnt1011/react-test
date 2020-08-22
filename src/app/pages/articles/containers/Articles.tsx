@@ -3,8 +3,7 @@ import RouteOutlet from '@shared/components/RouterOutlet';
 
 const Articles = ({ routes }) => {
   return (
-    <div>
-      This is Articles.
+    <div className="articles-page">
       <RouteOutlet routes={routes} />
     </div>
   );
