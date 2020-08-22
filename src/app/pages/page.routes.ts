@@ -1,14 +1,19 @@
 import articleRoutes from './articles/article.routes';
 import homeRoutes from './home/home.routes';
-import Pages from './Pages';
+import Pages from './containers/Pages';
+import Home from './home/containers/Home';
 
 const pageRoutes = [
   {
-    path: '',
+    path: '/*',
     element: Pages,
     children: [
-      ...articleRoutes,
-      ...homeRoutes
+      {
+        path: '/',
+        element: Home
+      },
+      ...homeRoutes,
+      ...articleRoutes
     ]
   }
 ];
