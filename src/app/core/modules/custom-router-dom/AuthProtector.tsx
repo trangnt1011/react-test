@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Login from '@core/auth/containers/Login'
+import Login from '@core/auth/containers/Login';
 
 function checkAuthentication(): boolean {
   const userId = localStorage.getItem('USER_ID');
@@ -14,8 +14,8 @@ function checkAuthentication(): boolean {
   }
 }
 
-export const AuthProtector = (route) => {
+export function AuthProtector(route) {
   return checkAuthentication() ?
     <route.element /> :
     <Route path="auth/login" element={<Login/>} />;
-};
+}
