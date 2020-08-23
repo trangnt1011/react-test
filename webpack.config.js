@@ -74,7 +74,7 @@ const commonConfigs = () => ({
       '@app': Path.resolve(__dirname, './src/app/'),
       '@assets': Path.resolve(__dirname, './src/assets/'),
       '@config': Path.resolve(__dirname, './src/config/'),
-      '@shared': Path.resolve(__dirname, './src/shared/'),
+      '@shared': Path.resolve(__dirname, './src/app/shared/'),
       '@core': Path.resolve(__dirname, './src/app/core'),
     }
   },

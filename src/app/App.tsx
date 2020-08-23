@@ -7,6 +7,7 @@ import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
 
 import { Footer, Header } from '@shared/components/layout/index';
+import { RouterOutlet } from '@core/modules/custom-router-dom';
 import appRoutes from './app.routes';
 import appMiddleware from './app.middleware';
 import appReducer from './app.reducers';
@@ -23,22 +24,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
-      <Routes>
-        {
-          appRoutes.map((route: any, index: number) => (
-            <Route key={index} path={route.path}>
-              <route.element />
-              {
-                route?.children?.map((subRoute: any, subIndex: number) => (
-                  <Route key={subIndex} path={subRoute.path}>
-                    <subRoute.element />
-                  </Route>
-                ))
-              }
-            </Route>
-          ))
-        }
-      </Routes>
+      <RouterOutlet routes={appRoutes} />
       <Footer />
     </BrowserRouter>
   </Provider>,
