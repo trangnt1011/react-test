@@ -20,5 +20,5 @@ export function privateRoute(Wrapped) {
       <Wrapped /> :
       <Navigate to="/auth/login" />
     );
-  }
-};
+  };
+}
