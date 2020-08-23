@@ -10,13 +10,9 @@ function renderRoute(routes) {
       <Route
         key={index}
         path={route.path}
-        element={
-          route.isProtected ?
-          <PrivateRoute /> :
-          <route.element/>
-        }
+        element={route.isProtected ? <PrivateRoute /> : <route.element />}
       >
-        { route.children && renderRoute(route.children) }
+        {route.children && renderRoute(route.children)}
       </Route>
     );
   });
