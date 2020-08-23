@@ -9,8 +9,7 @@ const ErrorHandler = () => {
 };
 
 const PageRendered = (Wrapped) => {
-  return function (props: any) {
-    // Handle a specific logic then return a new component
+  return (props: any) => {
     return (
       props.isLoading ? (
         <LoadingIndicator />
@@ -21,6 +20,8 @@ const PageRendered = (Wrapped) => {
           <Wrapped {...props.data} />
         )
       )
-    )
-  }
-}
+    );
+  };
+};
+
+export default PageRendered;
