@@ -4,8 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import { privateRoute } from './PrivateRoute';
 
 function renderRoute(routes) {
+  let PrivateRoute = null;
   return routes.map((route: any, index: number) => {
-    const PrivateRoute = privateRoute(route.element);
+    PrivateRoute = privateRoute(route.element);
     return (
       <Route
         key={index}
