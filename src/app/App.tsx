@@ -8,6 +8,7 @@ import { logger } from 'redux-logger';
 
 import { Footer, Header } from '@shared/components/layout/index';
 import appRoutes from './app.routes';
+import RouterOutlet from '@core/modules/RouterOutlet';
 import appMiddleware from './app.middleware';
 import appReducer from './app.reducers';
 
@@ -19,27 +20,11 @@ const store = createStore(
 
 middleware.run(appMiddleware);
 
-function renderRoute(routes) {
-  return routes.map((route: any, index: number) => {
-    return (
-      <Route
-        key={index}
-        path={route.path}
-        element={ <route.element/> }
-      >
-        { route.children && renderRoute(route.children) }
-      </Route>
-    );
-  });
-}
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
-      <Routes>
-        { renderRoute(appRoutes) }
-      </Routes>
+      <RouterOutlet routes={appRoutes} />
       <Footer />
     </BrowserRouter>
   </Provider>,
