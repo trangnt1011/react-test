@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-
-import Login from '@core/auth/containers/Login';
+import { Route, Navigate } from 'react-router-dom';
 
 function checkAuthentication(): boolean {
   const userId = localStorage.getItem('USER_ID');
@@ -17,5 +15,5 @@ function checkAuthentication(): boolean {
 export function AuthProtector(route) {
   return checkAuthentication() ?
     <route.element /> :
-    <Route path="auth/login" element={<Login/>} />;
+    <Navigate to="/auth/login" />;
 }
