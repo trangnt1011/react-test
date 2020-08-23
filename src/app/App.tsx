@@ -7,8 +7,8 @@ import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
 
 import { Footer, Header } from '@shared/components/layout/index';
+import { RouterOutlet } from '@core/modules/custom-router-dom';
 import appRoutes from './app.routes';
-import RouterOutlet from '@core/modules/RouterOutlet';
 import appMiddleware from './app.middleware';
 import appReducer from './app.reducers';
 

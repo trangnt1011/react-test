@@ -15,12 +15,10 @@ function renderRoute(routes) {
   });
 }
 
-const RouterOutlet = ({routes}) => {
+export const RouterOutlet = ({routes}) => {
   return (
     <Routes>
       { renderRoute(routes) }
     </Routes>
   );
 };
-
-export default RouterOutlet;
