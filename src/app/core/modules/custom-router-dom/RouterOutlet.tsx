@@ -11,7 +11,7 @@ function renderRoute(routes) {
         path={route.path}
         element={
           route.isProtected ?
-          <AuthProtector {...route} /> :
+          <AuthProtector Component={route.element} /> :
           <route.element/>
         }
       >
