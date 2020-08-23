@@ -1,13 +1,19 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { AuthProtector } from './AuthProtector';
+
 function renderRoute(routes) {
   return routes.map((route: any, index: number) => {
     return (
       <Route
         key={index}
         path={route.path}
-        element={ <route.element/> }
+        element={
+          route.isProtected ?
+          <AuthProtector {...route} /> :
+          <route.element/>
+        }
       >
         { route.children && renderRoute(route.children) }
       </Route>

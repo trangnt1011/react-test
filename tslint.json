@@ -30,6 +30,7 @@
     },
     "ordered-imports": false,
     "jsx-no-lambda": false,
-    "no-console": false
+    "no-console": false,
+    "only-arrow-functions": false
   }
 }
