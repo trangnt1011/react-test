@@ -12,8 +12,10 @@ function checkAuthentication(): boolean {
   }
 }
 
-export function AuthProtector({ Component }) {
-  return checkAuthentication() ?
-    <Component /> :
-    <Navigate to="/auth/login" />;
-}
+export const privateRoute = (Wrapped) => {
+  return (
+    checkAuthentication() ?
+    <Wrapped /> :
+    <Navigate to="/auth/login" />
+  );
+};

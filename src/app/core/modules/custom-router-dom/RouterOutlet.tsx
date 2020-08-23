@@ -1,17 +1,18 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { AuthProtector } from './AuthProtector';
+import { privateRoute } from './PrivateRoute';
 
 function renderRoute(routes) {
   return routes.map((route: any, index: number) => {
+    const PrivateRoute = privateRoute(route.element);
     return (
       <Route
         key={index}
         path={route.path}
         element={
           route.isProtected ?
-          <AuthProtector Component={route.element} /> :
+          PrivateRoute :
           <route.element/>
         }
       >
