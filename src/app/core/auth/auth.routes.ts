@@ -4,7 +4,7 @@ import Auth from './Auth';
 
 const authRoutes = [
   {
-    path: 'auth/*',
+    path: 'auth',
     element: Auth,
     children: [
       {
