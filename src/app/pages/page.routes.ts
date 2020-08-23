@@ -4,7 +4,7 @@ import Page from './Page';
 
 const pageRoutes = [
   {
-    path: '',
+    path: 'home',
     element: Page,
     children: [
       ...homeRoutes,
