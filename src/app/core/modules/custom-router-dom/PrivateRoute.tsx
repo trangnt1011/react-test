@@ -12,10 +12,13 @@ function checkAuthentication(): boolean {
   }
 }
 
-export const privateRoute = (Wrapped) => {
-  return (
-    checkAuthentication() ?
-    <Wrapped /> :
-    <Navigate to="/auth/login" />
-  );
+export function privateRoute(Wrapped) {
+  const isAuth = checkAuthentication();
+  return (props) => {
+    return (
+      isAuth ?
+      <Wrapped /> :
+      <Navigate to="/auth/login" />
+    );
+  }
 };
