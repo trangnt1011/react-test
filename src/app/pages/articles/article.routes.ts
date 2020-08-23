@@ -6,6 +6,7 @@ const articleRoutes = [
   {
     path: 'articles',
     element: Articles,
+    isProtected: true,
     children: [
       {
         path: '',
