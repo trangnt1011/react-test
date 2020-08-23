@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -24,7 +24,9 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
-      <RouterOutlet routes={appRoutes} />
+      <Routes>
+        <RouterOutlet routes={appRoutes} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   </Provider>,

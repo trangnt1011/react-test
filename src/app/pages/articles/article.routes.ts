@@ -4,11 +4,11 @@ import Articles from './containers/Articles';
 
 const articleRoutes = [
   {
-    path: 'articles/*',
+    path: 'articles',
     element: Articles,
     children: [
       {
-        path: '/',
+        path: '',
         element: ArticleList
       },
       {

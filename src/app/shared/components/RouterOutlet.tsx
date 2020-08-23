@@ -6,23 +6,17 @@ function hasChildren(route: any) {
 }
 
 const RouterOutlet = ({ routes }) => {
-  return (
-    <Routes>
-      {
-        routes.map((route: any, index: number) => {
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={ <route.element/> }
-            >
-              { hasChildren(route) && <RouterOutlet routes={route.children} /> }
-            </Route>
-          );
-        })
-      }
-    </Routes>
-  );
+  return routes.map((route: any, index: number) => {
+    return (
+      <Route
+        key={index}
+        path={route.path}
+        element={ <route.element/> }
+      >
+        { hasChildren(route) && <RouterOutlet routes={route.children} /> }
+      </Route>
+    );
+  });
 };
 
 export default RouterOutlet;
