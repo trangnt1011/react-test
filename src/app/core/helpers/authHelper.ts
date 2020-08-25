@@ -17,7 +17,7 @@ const strategies = {
   __default__: JwtHelper
 };
 
-abstract class DynamicAuth {
+class DynamicAuth {
   [x: string]: any;
 
   constructor(type: string) {
