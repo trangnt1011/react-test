@@ -1,15 +1,15 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from '@config/environment';
-import AuthHelper, { AuthHelperInterface } from '../helpers/authHelper';
+import AuthHelper from '../helpers/authHelper';
 import jwtHelper from '../helpers/jwtHelper';
 
 export class ApiService {
 
   axiosInstance: AxiosInstance;
-  authHelper: AuthHelper<AuthHelperInterface>;
+  authHelper: AuthHelper;
 
   constructor() {
-    this.authHelper = new AuthHelper(jwtHelper);
+    this.authHelper = new AuthHelper();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,

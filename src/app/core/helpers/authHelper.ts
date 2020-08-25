@@ -1,31 +1,50 @@
 import { AxiosRequestConfig } from 'axios';
+import JwtHelper from './jwtHelper';
+import { IUtilitiesAuth } from './utilitesHelper';
 
 export interface AuthHelperInterface {
   defaultHeader: () => {};
-  getToken: () => string;
   getAuthHeader: () => {};
   isValidToken: () => boolean;
+  isAuthenticated: () => boolean;
+  isCurrentUser(uid: string): boolean;
+  userRole: () => string | number;
+  getUserInfo: () => {};
 }
 
-export default class AuthHelper<T extends AuthHelperInterface> {
+const strategies = {
+  JWT: JwtHelper,
+  __default__: JwtHelper
+};
 
-  private helper: T;
+abstract class DynamicAuth {
+  [x: string]: any;
 
-  constructor(readonly Helper: new () => T) {
-    // TODO: do something when init this helper
-    this.helper = new Helper();
+  constructor(type: string) {
+    const currentAuth = strategies[type];
+    Object.setPrototypeOf(DynamicAuth.prototype, new currentAuth());
+  }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export default class AuthHelper extends DynamicAuth {
+
+  constructor(type: string = 'JWT') {
+    super(type);
   }
 
   defaultHeader() {
-    return this.helper.defaultHeader();
+    if (super.defaultHeader) {
+      return super.defaultHeader();
+    }
+    // default code here
   }
 
   getAuthHeader() {
-    return this.helper.getAuthHeader();
-  }
-
-  getToken(): string {
-    return this.helper.getToken();
+    if (super.getAuthHeader) {
+      return super.getAuthHeader();
+    }
+    // default code here
   }
 
   /**
@@ -40,8 +59,10 @@ export default class AuthHelper<T extends AuthHelperInterface> {
      */
     // TODO
 
-    // Default return
-    return this.helper.isValidToken();
+    if (super.isValidToken) {
+      return super.isValidToken();
+    }
+    // default code here
   }
 
   setAuthHeader(request: AxiosRequestConfig): Promise<AxiosRequestConfig> | AxiosRequestConfig {
