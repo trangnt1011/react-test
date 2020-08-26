@@ -2,16 +2,35 @@ import { createReducer } from '@app/core/helpers/reducer-factory';
 import * as types from '@core/constants/types';
 
 const initialState = {
-  token: null
+  isLoading: false,
+  isProcessing: false,
+  hasError: false,
+  data: null,
+  error: null,
 };
 
-const setToken = (state, payload) => ({
+const signInSuccess = (state, payload) => ({
   ...state,
-  token: payload.accessToken
+  isLoading: false,
+  data: payload.data
+});
+
+const signInError = (state, payload) => ({
+  ...state,
+  isLoading: false,
+  hasError: true,
+  error: payload.error
+});
+
+const signIn = (state, payload) => ({
+  ...state,
+  isLoading: true
 });
 
 const strategies = {
-  [types.SET_TOKEN]: setToken,
+  [types.SIGN_IN_SUCCESS]: signInSuccess,
+  [types.SIGN_IN]: signIn,
+  [types.SIGN_IN_ERROR]: signInError,
   __default__: state => state
 };
 

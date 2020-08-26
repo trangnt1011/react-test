@@ -1,13 +1,8 @@
 import { AuthHelperInterface } from './authHelper';
-import { UtilitiesHelper } from './utilitesHelper';
 import * as jwt from 'jsonwebtoken';
+import { AuthStorageService } from '../services/authStorage.service';
 
-export default class JwtHelper extends UtilitiesHelper implements AuthHelperInterface {
-
-  constructor () {
-    super();
-    // TODO: do something when init this helper
-  }
+export default class JwtHelper extends AuthStorageService implements AuthHelperInterface {
 
   defaultHeader = () => ({
     // TODO: make default jwt header

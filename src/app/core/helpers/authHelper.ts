@@ -1,6 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
 import JwtHelper from './jwtHelper';
-import { IUtilitiesAuth } from './utilitesHelper';
 
 export interface AuthHelperInterface {
   defaultHeader: () => {};

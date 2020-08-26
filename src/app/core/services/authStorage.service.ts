@@ -1,15 +1,15 @@
-export interface IUtilitiesAuth {
+export interface IAuthStorage {
   setToken(data?: any): void;
   getToken(): void;
   removeToken(): void;
 }
 
-export class UtilitiesHelper implements IUtilitiesAuth {
+export class AuthStorageService implements IAuthStorage {
   ACCESS_TOKEN = 'token';
 
-  setToken(data?: any) {
-    if (data) {
-      localStorage.setItem(this.ACCESS_TOKEN, data.accessToken);
+  setToken(token?: any) {
+    if (token) {
+      localStorage.setItem(this.ACCESS_TOKEN, token);
     }
   }
 

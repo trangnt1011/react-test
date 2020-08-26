@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from '@config/environment';
 import AuthHelper from '../helpers/authHelper';
-import jwtHelper from '../helpers/jwtHelper';
 
 export class ApiService {
 
