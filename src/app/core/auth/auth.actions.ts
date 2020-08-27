@@ -1,16 +1,16 @@
-import * as types from '@app/core/constants/types';
+import ACTION_TYPES from '@app/core/constants/types';
 
 export const signIn = (account: object) => ({
-  type: types.SIGN_IN,
+  type: ACTION_TYPES.SIGN_IN,
   payload: account
 });
 
 export const signInSuccess = (payload) => ({
-  type: types.SIGN_IN_SUCCESS,
+  type: ACTION_TYPES.SIGN_IN_SUCCESS,
   payload
 });
 
 export const signInError = (payload) => ({
-  type: types.SIGN_IN_ERROR,
+  type: ACTION_TYPES.SIGN_IN_ERROR,
   payload
 });

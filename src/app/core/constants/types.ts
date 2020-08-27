@@ -1,8 +1,7 @@
-const makeApiTypes = (type: string) => ({
-  [`${type}`]: type,
-  [`${type}_SUCCESS`]: `${type}_SUCCESS`,
-  [`${type}_ERROR`]: `${type}_ERROR`
-});
-export const TYPES = {
-  ...makeApiTypes('SIGN_IN')
+const ACTION_TYPES = {
+ 'SIGN_IN': 'SIGN_IN',
+ 'SIGN_IN_SUCCESS': 'SIGN_IN_SUCCESS',
+ 'SIGN_IN_ERROR': 'SIGN_IN_ERROR'
 };
+
+export default ACTION_TYPES;

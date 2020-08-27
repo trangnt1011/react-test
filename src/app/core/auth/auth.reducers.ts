@@ -1,5 +1,5 @@
 import { createReducer } from '@app/core/helpers/reducer-factory';
-import * as types from '@core/constants/types';
+import ACTION_TYPES from '@core/constants/types';
 
 const initialState = {
   isLoading: false,
@@ -28,9 +28,9 @@ const signIn = (state, payload) => ({
 });
 
 const strategies = {
-  [types.SIGN_IN_SUCCESS]: signInSuccess,
-  [types.SIGN_IN]: signIn,
-  [types.SIGN_IN_ERROR]: signInError,
+  [ACTION_TYPES.SIGN_IN_SUCCESS]: signInSuccess,
+  [ACTION_TYPES.SIGN_IN]: signIn,
+  [ACTION_TYPES.SIGN_IN_ERROR]: signInError,
   __default__: state => state
 };
 

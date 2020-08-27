@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { put, takeLatest } from 'redux-saga/effects';
-import * as types from '@core/constants/types';
+import ACTION_TYPES from '@core/constants/types';
 import { AuthService } from '../services/auth.service';
 import { signInSuccess, signInError } from './auth.actions';
 
@@ -21,5 +21,5 @@ export function* signin({ payload }: AnyAction) {
 }
 
 export function* watchAuth() {
-  yield takeLatest(types.SIGN_IN, signin);
+  yield takeLatest(ACTION_TYPES.SIGN_IN, signin);
 }
