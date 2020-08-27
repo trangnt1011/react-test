@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/redux-logger": "3.0.8",
     "axios": "^0.19.2",
+    "jsonwebtoken": "^8.5.1",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
     "history": "5.0.0",
