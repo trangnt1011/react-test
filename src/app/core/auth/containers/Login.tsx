@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { doSignin } from '../auth.actions';
+import { signIn } from '../auth.actions';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const Login = () => {
   const onLogin = () => {
     const account = { username: 'admin', password: 'admin' };
     dispatch(
-      doSignin(account)
+      signIn(account)
     );
   };
 
