@@ -1,10 +1,10 @@
-export interface IAuthStorage {
+export interface AuthStorage {
   setToken(data?: any): void;
   getToken(): void;
   removeToken(): void;
 }
 
-export class AuthStorageService implements IAuthStorage {
+export class AuthStorageService implements AuthStorage {
   ACCESS_TOKEN = 'token';
 
   setToken(token?: any) {
