@@ -198,7 +198,7 @@ const productionConfig = () => merge([
 const developmentConfig = () => merge([
   loadDevCss({ options: { sourceMap: true }}),
   {
-    devtool: 'eval',
+    devtool: 'inline-source-map',
     devServer: {
       contentBase: PATHS.source,
       hot: true,
