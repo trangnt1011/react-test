@@ -133,9 +133,9 @@ const loadJavaScript = ({ include, exclude } = {}) => ({
         ]
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: 'source-map-loader'
       },
     ]
   }
@@ -224,7 +224,7 @@ const developmentConfig = () => merge([
     devServer: {
       contentBase: PATHS.source,
       hot: true,
-      host: "localhost",
+      host: 'localhost',
       port: 3000,
       compress: true,
       inline: true,
