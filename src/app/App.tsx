@@ -1,8 +1,9 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import 'core-js/stable'; // For IE
+import 'regenerator-runtime/runtime'; // For IE
+
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -26,7 +27,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
-      <RouterOutlet routes={appRoutes} />
+        <RouterOutlet routes={appRoutes} />
       <Footer />
     </BrowserRouter>
   </Provider>,
