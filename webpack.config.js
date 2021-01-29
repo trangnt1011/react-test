@@ -68,7 +68,7 @@ const commonConfigs = () => ({
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: ['.ts', '.tsx', '.js'],
     mainFields: ['browser', 'main'],
     alias: {
       '@app': Path.resolve(__dirname, './src/app/'),
@@ -108,12 +108,34 @@ const loadJavaScript = ({ include, exclude } = {}) => ({
         test: /\.ts(x?)$/,
         include,
         exclude,
-        use: 'ts-loader'
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      // add the version of browsers list you want
+                     browsers: ['> 1%, not dead'],
+                    },
+                    useBuiltIns: 'usage',
+                    corejs: 3
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: 'source-map-loader'
       },
     ]
   }
@@ -202,7 +224,7 @@ const developmentConfig = () => merge([
     devServer: {
       contentBase: PATHS.source,
       hot: true,
-      host: "localhost",
+      host: 'localhost',
       port: 3000,
       compress: true,
       inline: true,
