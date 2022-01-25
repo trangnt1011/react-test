@@ -1,7 +1,10 @@
+import React from 'react';
+
 import { PageRoute } from '@core/modules/custom-router-dom/router.interface';
-import ArticleDetail from './containers/ArticleDetail';
-import ArticleList from './containers/ArticleList';
-import Articles from './containers/Articles';
+
+const Articles = React.lazy(() => import('./containers/Articles'));
+const ArticleDetail = React.lazy(() => import('./containers/ArticleDetail'));
+const ArticleList = React.lazy(() => import('./containers/ArticleList'));
 
 const articleRoutes: PageRoute[] = [
   {
