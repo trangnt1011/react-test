@@ -60,15 +60,6 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
           {
             loader: 'babel-loader'
           }
-          // {
-          //   loader: 'ts-loader',
-          //   options: {
-          //     transpileOnly: true,
-          //     compilerOptions: {
-          //       target: 'es5'
-          //     }
-          //   }
-          // }
         ]
       }
     ]
@@ -219,8 +210,12 @@ exports.devServer = ({ host, port } = {}) => ({
     host,
     port,
     compress: true,
-    // inline: true,
     historyApiFallback: true
-    // watchContentBase: true
-  }
+  },
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin()
+  ],
+  optimization: {
+    runtimeChunk: 'single'
+  },
 });
