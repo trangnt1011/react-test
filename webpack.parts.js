@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const Webpack = require('webpack');
 const Path = require('path');
 
@@ -5,15 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssnano = require('cssnano');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const dotenv = require('dotenv');
 const fs = require('fs');
 
 exports.setEnvVariables = (mode = '') => {
-  const envDefault = `${Path.join(__dirname)}/.env`
+  const envDefault = `${Path.join(__dirname)}/.env`;
   let envPath = `${envDefault}.${mode}`;
   if (!fs.existsSync(envPath)) {
     envPath = envDefault;
@@ -60,33 +59,10 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         exclude,
         use: [
           {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    targets: {
-                      // add the version of browsers list you want
-                     browsers: ['> 1%, not dead'],
-                    },
-                    useBuiltIns: 'usage',
-                    corejs: 3
-                  }
-                ]
-              ]
-            }
-          },
-          {
-            loader: 'ts-loader'
+            loader: 'babel-loader'
           }
         ]
-      },
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        // loader: 'source-map-loader'
-      },
+      }
     ]
   }
 });
@@ -95,15 +71,17 @@ exports.loadDevCss = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.(sa|sc|c)ss$/,
         include,
         exclude,
+        type: 'javascript/auto',
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options
           },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
           'sass-loader'
         ]
       }
@@ -115,36 +93,57 @@ exports.loadProdCss = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.(sa|sc|c)ss$/,
         include,
         exclude,
         use: [
-          'style-loader', // Fallback
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          // 'style-loader', // Fallback
+          MiniCssExtractPlugin.loader,
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       }
     ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    })
-  ]
+  }
 });
 
 exports.loadOther = () => ({
   module: {
     rules: [
-      { test: /\.png$/, use: 'url-loader?limit=10000' },
+      {
+        test: /\.png$/,
+        // type: 'asset/resource',
+        use: {
+          loader: 'url-loader',
+          options: { limit: 100000 }
+        }
+      },
       { test: /\.jpg$/, use: 'file-loader' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: ['@svgr/webpack'] },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=application/font-woff' },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=application/font-woff' },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=application/octet-stream' },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            mimetype: 'application/font-woff'
+          }
+        }
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: 'file-loader',
+          options: { mimetype: 'application/font-woff' }
+        }
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: 'file-loader',
+          options: { mimetype: 'application/octet-stream' }
+        }
+      },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' }
     ]
   }
@@ -155,7 +154,14 @@ exports.loadResolver = ({ alias } = {}) => ({
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js'],
     mainFields: ['browser', 'main'],
-    alias
+    alias,
+    fallback: {
+      assert: require.resolve('assert/'),
+      buffer: require.resolve('buffer-browserify'),
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+      vm: require.resolve('vm-browserify')
+    }
   }
 });
 
@@ -168,22 +174,27 @@ exports.copyPlugin = ({ patterns } = {}) => ({
 });
 
 exports.minifyJs = () => ({
-  plugins: [
-    new TerserPlugin({
-      parallel: true,
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      extractComments: false,
       terserOptions: {
-        ecma: 2015,
+        output: {
+          comments: false
+        }
       }
-    })
-  ]
+    })]
+  }
 });
 
-exports.minifyCss = ({options}) => ({
+exports.minifyCss = () => ({
   plugins: [
-    new OptimizeCSSAssetsPlugin({
-      cssProcessor: cssnano,
-      cssProcessorOptions: options,
-      canPrint: false
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
+      ignoreOrder: false // Enable to remove warnings about conflicting order
     })
   ]
 });
@@ -195,15 +206,19 @@ exports.cleanBuild = (path) => ({
 });
 
 exports.devServer = ({ host, port } = {}) => ({
-  devtool: 'eval',
+  devtool: 'source-map',
   devServer: {
-    contentBase: Path.join(__dirname, './src'),
+    // contentBase: Path.join(__dirname, './src'),
     hot: true,
     host,
     port,
     compress: true,
-    inline: true,
-    historyApiFallback: true,
-    watchContentBase: true
-  }
+    historyApiFallback: true
+  },
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin()
+  ],
+  optimization: {
+    runtimeChunk: 'single'
+  },
 });

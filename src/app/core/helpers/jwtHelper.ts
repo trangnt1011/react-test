@@ -1,5 +1,5 @@
 import { AuthHelperInterface } from './authHelper';
-import * as jwt from 'jsonwebtoken';
+import JwtDecode from 'jwt-decode';
 import { AuthStorageService } from '../services/authStorage.service';
 
 export default class JwtHelper extends AuthStorageService implements AuthHelperInterface {
@@ -46,7 +46,8 @@ export default class JwtHelper extends AuthStorageService implements AuthHelperI
   getUserInfo() {
     const { isTokenValid, token } = this._verifyJWTToken();
     if (isTokenValid) {
-      return jwt.decode(token).data;
+      const res: any = JwtDecode(token);
+      return res.data;
     } else {
       return null;
     }
@@ -54,7 +55,7 @@ export default class JwtHelper extends AuthStorageService implements AuthHelperI
 
   private _verifyJWTToken() {
     const token: string | boolean = this.getToken();
-    const isTokenValid: boolean = jwt.decode(token);
+    const isTokenValid: boolean = JwtDecode(token);
     if (!isTokenValid) {
       this.removeToken();
     }

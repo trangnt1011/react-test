@@ -1,23 +1,26 @@
-import Login from './containers/Login';
-import Register from './containers/Register';
-import Auth from './Auth';
+import React from 'react';
+
 import { PageRoute } from '../modules/custom-router-dom/router.interface';
+
+const Auth = React.lazy(() => import('./Auth'));
+const Login = React.lazy(() => import('./containers/Login'));
+const Register = React.lazy(() => import('./containers/Register'));
 
 const authRoutes: PageRoute[] = [
   {
-    path: '/auth',
+    path: 'auth',
     element: Auth,
     children: [
       {
-        path: '/',
+        path: '',
         redirect: 'login'
       },
       {
-        path: '/login',
+        path: 'login',
         element: Login
       },
       {
-        path: '/register',
+        path: 'register',
         element: Register
       }
     ]

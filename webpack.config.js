@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const Webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const Path = require('path');
 const parts = require('./webpack.parts');
@@ -7,37 +9,44 @@ const PATHS = {
   output: Path.join(__dirname, './dist'),
   source: Path.join(__dirname, './src'),
   fixed: ''
-}
+};
 
 const commonConfigs = () => ({
-  target: 'web',
+  target: ['web', 'es5'],
   context: PATHS.source,
   output: {
     path: PATHS.output,
     publicPath: PATHS.fixed,
-    filename: '[name].js',
+    filename: '[name].js'
   },
   performance: {
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000
+    maxEntrypointSize: 1024000,
+    maxAssetSize: 1024000
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-    },
+      chunks: 'all'
+    }
   },
   entry: {
-    main: './app/App.tsx',
-    vendor: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'redux'
-    ],
+    main: ['core-js/stable', './app/App.tsx'],
+    // vendor: [
+    // '@babel/polyfill',
+    // 'react',
+    // 'react-dom',
+    // 'react-redux',
+    // 'redux'
+    // ],
     styles: [
       './stylesheet/styles.scss'
     ]
-  }
+  },
+  plugins: [
+    // Make process Browser
+    new Webpack.ProvidePlugin({
+      process: 'process/browser'
+    })
+  ]
 });
 
 const baseConfigs = () => merge([
@@ -52,6 +61,7 @@ const baseConfigs = () => merge([
       '@config': Path.resolve(__dirname, './src/config/'),
       '@shared': Path.resolve(__dirname, './src/app/shared/'),
       '@core': Path.resolve(__dirname, './src/app/core'),
+      'react-hook-form': 'react-hook-form/dist/index.ie11'
     }
   }),
   parts.copyPlugin({
@@ -67,21 +77,12 @@ const productionConfig = () => merge([
   parts.cleanBuild(PATHS.output),
   {
     output: {
-      filename: '[name].[contenthash].js',
-    },
+      filename: '[name].[contenthash].js'
+    }
   },
   parts.loadProdCss(),
   parts.minifyJs(),
-  parts.minifyCss({
-    options: {
-      discardComments: {
-        removeAll: true
-      },
-      // Run cssnano in safe mode to avoid
-      // potentially unsafe transformations.
-      safe: true
-    }
-  }),
+  parts.minifyCss()
 ]);
 
 const developmentConfig = () => merge([
@@ -89,17 +90,16 @@ const developmentConfig = () => merge([
   parts.devServer({
     // Customize host/port here if needed
     host: 'localhost',
-    port: 3000,
+    port: 3000
   })
 ]);
 
 module.exports = (env) => {
-  const mode = env && env.NODE_ENV ? env.NODE_ENV : 'development';
-  const modeConfigs = (mode === 'development') ? developmentConfig() : productionConfig();
+  const modeConfigs = env.WEBPACK_SERVE ? developmentConfig() : productionConfig();
   return merge(
     baseConfigs(),
-    parts.setEnvVariables(mode),
+    parts.setEnvVariables(env.NODE_ENV || 'development'),
     modeConfigs,
-    { mode: mode === 'development' ? mode : 'production' }
+    { mode: (env.WEBPACK_BUNDLE && !env.DETECT_BUILD) ? 'production' : 'development' }
   );
 };
