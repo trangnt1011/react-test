@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const Webpack = require('webpack');
 const Path = require('path');
 
@@ -80,6 +81,7 @@ exports.loadDevCss = ({ include, exclude, options } = {}) => ({
             loader: 'css-loader',
             options
           },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
           'sass-loader'
         ]
       }
@@ -98,6 +100,7 @@ exports.loadProdCss = ({ include, exclude } = {}) => ({
           // 'style-loader', // Fallback
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       }

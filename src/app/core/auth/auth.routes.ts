@@ -8,19 +8,19 @@ const Register = React.lazy(() => import('./containers/Register'));
 
 const authRoutes: PageRoute[] = [
   {
-    path: '/auth',
+    path: 'auth',
     element: Auth,
     children: [
       {
-        path: '/',
+        path: '',
         redirect: 'login'
       },
       {
-        path: '/login',
+        path: 'login',
         element: Login
       },
       {
-        path: '/register',
+        path: 'register',
         element: Register
       }
     ]
