@@ -8,16 +8,16 @@ const ArticleList = React.lazy(() => import('./containers/ArticleList'));
 
 const articleRoutes: PageRoute[] = [
   {
-    path: '/articles',
+    path: 'articles',
     element: Articles,
     isProtected: true,
     children: [
       {
-        path: '/',
+        path: '',
         element: ArticleList
       },
       {
-        path: '/:id',
+        path: ':id',
         element: ArticleDetail
       }
     ]
