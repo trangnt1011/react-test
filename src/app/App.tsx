@@ -30,11 +30,9 @@ root.render(
       <AppSuspense fallback={<></>}>
         <Header />
       </AppSuspense>
-      <Header />
       <AppSuspense fallback={<></>}>
         <RouterOutlet routes={appRoutes} />
       </AppSuspense>
-      <Footer />
       <AppSuspense fallback={<></>}>
         <Footer />
       </AppSuspense>

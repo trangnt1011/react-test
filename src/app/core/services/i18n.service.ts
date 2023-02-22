@@ -4,10 +4,10 @@ import { initReactI18next } from 'react-i18next';
 
 import { getLS, KEYS } from '@app/core/helpers/storageHelper';
 
-export const LANGUAGES = ['ja', 'en'];
-export const DEFAULT_LANGUAGE = 'ja';
+export const LANGUAGES = ['en', 'ja'];
+export const DEFAULT_LANGUAGE = 'en';
 
-export const currentLang = () => {
+export const currentLang = (): string => {
   const browserLanguage = navigator.languages?.filter((element) =>
     LANGUAGES.includes(element)
   );
