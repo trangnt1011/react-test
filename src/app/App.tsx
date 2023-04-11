@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
@@ -23,21 +23,19 @@ const store = createStore(
 
 middleware.run(appMiddleware);
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <Provider store={store}>
     <BrowserRouter>
       <AppSuspense fallback={<></>}>
         <Header />
       </AppSuspense>
-      <Header />
       <AppSuspense fallback={<></>}>
         <RouterOutlet routes={appRoutes} />
       </AppSuspense>
-      <Footer />
       <AppSuspense fallback={<></>}>
         <Footer />
       </AppSuspense>
     </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );

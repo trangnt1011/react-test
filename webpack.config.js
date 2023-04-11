@@ -29,7 +29,11 @@ const commonConfigs = () => ({
     }
   },
   entry: {
-    main: ['core-js/stable', './app/App.tsx'],
+    main: [
+      'core-js/stable',
+      'regenerator-runtime/runtime',
+      './app/App.tsx'
+    ],
     // vendor: [
     // '@babel/polyfill',
     // 'react',
